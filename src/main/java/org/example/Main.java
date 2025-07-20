@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.command.*;
 import org.example.strategy.CalculadoraFrete;
 import org.example.strategy.FreteExpresso;
 import org.example.strategy.FreteNormal;
@@ -30,6 +31,22 @@ public class Main {
         calculadora.setEstrategia(new RetiradaLoja());
         double valorRetirada = calculadora.calcularFrete(peso);
         System.out.println("Valor da retirada em loja: R$ " + valorRetirada);
+
+        // Command - Luz
+        System.out.println("Luz - Command (Design Patterns)");
+
+        Luz minhaLuz = new Luz();
+
+        Comando comandoLigar = new ComandoLigarLuz(minhaLuz);
+        Comando comandoDesligar = new ComandoDesligarLuz(minhaLuz);
+
+        Interruptor interruptor = new Interruptor();
+
+        interruptor.setComando(comandoLigar);
+        interruptor.pressionar();
+
+        interruptor.setComando(comandoDesligar);
+        interruptor.pressionar();
 
     }
 }
